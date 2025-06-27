@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Offer;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Pizza;
 import java.util.List;
 
@@ -116,6 +117,19 @@ public class PizzaController {
     public String delete(@PathVariable("id") Integer id) {
         repository.deleteById(id);
         return "redirect:/pizzas";
+    }
+
+    // metodo per restituire la lista di offerte su una pizza
+
+    @GetMapping("/{id}/offer")
+    public String offer(@PathVariable("id") Integer id, Model model) {
+
+        Offer offer = new Offer();
+        offer.setPizza(repository.findById(id).get());
+        model.addAttribute("offer", offer);
+
+        return "offers/create";
+
     }
 
 }

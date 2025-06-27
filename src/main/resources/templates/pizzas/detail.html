@@ -21,6 +21,11 @@
         <a th:href="@{/pizzas/edit/} + *{id}" class="btn btn-warning mb-5"
           >Modifica</a
         >
+        <a
+          th:href="@{/pizzas/{id}/offer(id = ${pizza.id})}"
+          class="btn btn-info mb-5"
+          >Aggiungi Offerta</a
+        >
         <!-- PER EFFETTUARE UNA DELETE DEL PRODOTTO DOBBIAMO NECESSARIAMENTE UTILIZZARE UN FORM
          PERCHè IL COMPONENTE "A TH:HREF" PUò EFFETTUARE SOLO CHIAMATE GET, QUINDI CI SERVIAMO 
          DI UN BOTTONE CHE FUNGERà DA SUBMIT IN UN FORM CON IL METODO "POST" -->
