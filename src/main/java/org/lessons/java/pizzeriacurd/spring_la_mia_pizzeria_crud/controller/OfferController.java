@@ -35,7 +35,7 @@ public class OfferController {
         }
 
         repository.save(offerForm);
-        return "redirect:/pizzas";
+        return "redirect:/pizzas/" + offerForm.getPizza().getId();
 
     }
 
