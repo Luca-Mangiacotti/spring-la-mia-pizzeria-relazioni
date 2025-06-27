@@ -23,7 +23,7 @@
         >
         <a
           th:href="@{/pizzas/{id}/offer(id = ${pizza.id})}"
-          class="btn btn-info mb-5"
+          class="btn btn-warning mb-5"
           >Aggiungi Offerta</a
         >
         <!-- PER EFFETTUARE UNA DELETE DEL PRODOTTO DOBBIAMO NECESSARIAMENTE UTILIZZARE UN FORM
@@ -100,6 +100,7 @@
                   <th>Titolo</th>
                   <th>Data inizio</th>
                   <th>Data fine</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -109,8 +110,16 @@
                   class="mb-2"
                 >
                   <td>[[*{title}]]</td>
-                  <td>[[*{endDate}]]</td>
                   <td>[[*{startDate}]]</td>
+                  <td>[[*{endDate}]]</td>
+                  <td>
+                    <a
+                      th:href="@{/offers/edit/{id} (id=${offer.id})}"
+                      class="btn btn-warning btn-sm"
+                    >
+                      Modifica</a
+                    >
+                  </td>
                 </tr>
               </tbody>
             </table>

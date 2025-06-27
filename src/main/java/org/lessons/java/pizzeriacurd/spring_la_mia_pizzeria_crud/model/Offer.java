@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
@@ -21,6 +22,7 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
+    @NotNull
     @PastOrPresent(message = "start date cannot be in the future")
     @Column(name = "startDate")
     private LocalDate startDate;

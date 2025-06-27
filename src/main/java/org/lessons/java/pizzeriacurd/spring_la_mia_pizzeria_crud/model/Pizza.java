@@ -13,7 +13,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Offer;
 
 @Entity
 @Table(name = "pizzas")

@@ -128,7 +128,7 @@ public class PizzaController {
         offer.setPizza(repository.findById(id).get());
         model.addAttribute("offer", offer);
 
-        return "offers/create";
+        return "offers/create-edit";
 
     }
 

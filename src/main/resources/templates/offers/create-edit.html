@@ -14,9 +14,15 @@
         Aggiungi una nuova offerta per: [[${offer.pizza.getName()}]]
       </h1>
       <div class="container">
-        <form th:action="@{/offers/create}" th:object="${offer}" method="post">
+        <form
+          th:action="${edit} ? @{'/offers/edit/'+${offer.id}} : @{/offers/create}"
+          th:object="${offer}"
+          method="post"
+        >
+          <!-- Campo nascosto per l'ID dell'offerta (necessario per l'edit) -->
+          <input type="hidden" th:if="${offer.id != null}" th:field="*{id}" />
           <!-- qui nascondiamo i dati della pizza a cui faccio riferimento per l'offerta -->
-          <input type="hidden" th:field="*{pizza}" id="current-pizza" />
+          <input type="hidden" th:field="*{pizza.id}" id="current-pizza" />
           <div class="mb-3">
             <label class="form-label" for="title">Titolo: </label>
             <input
