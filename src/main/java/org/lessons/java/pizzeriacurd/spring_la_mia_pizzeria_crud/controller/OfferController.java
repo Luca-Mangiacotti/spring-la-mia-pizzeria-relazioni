@@ -2,7 +2,6 @@ package org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.controller;
 
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Offer;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.repository.OfferRepository;
-import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +20,6 @@ public class OfferController {
 
     @Autowired
     private OfferRepository repository;
-
-    @Autowired
-    private PizzaRepository pizzaRepo;
 
     // AGGIUNTA DI UNA NUOVA OFFERTA (CREATE)
     @GetMapping("/create")
@@ -76,8 +72,14 @@ public class OfferController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
+
+        // aggiungiamo .orElseThrow per gestire l'eccezione nel caso non esistesse
+        // l'offerta
+        Offer offer = repository.findById(id).orElseThrow(() -> new RuntimeException("Offer not found"));
+        Integer pizzaId = offer.getPizza().getId();
         repository.deleteById(id);
-        return "redirect:/pizzas";
+
+        return "redirect:/pizzas/" + pizzaId;
     }
 
 }
