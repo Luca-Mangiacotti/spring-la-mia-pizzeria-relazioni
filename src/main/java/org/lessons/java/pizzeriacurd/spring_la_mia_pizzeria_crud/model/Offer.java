@@ -2,6 +2,8 @@ package org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,11 +24,13 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     @PastOrPresent(message = "start date cannot be in the future")
     @Column(name = "startDate")
     private LocalDate startDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "end date cannot be in the future")
     @Column(name = "endDate")
     private LocalDate endDate;
