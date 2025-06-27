@@ -101,6 +101,7 @@
                   <th>Data inizio</th>
                   <th>Data fine</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -119,6 +120,16 @@
                     >
                       Modifica</a
                     >
+                  </td>
+                  <td>
+                     <form
+                    th:action="@{/offers/delete/{id} (id = *{id})}"
+                    th:method="post"
+                    id="delete-offer-form"
+                  >
+                    <button class="btn btn-danger" type="submit">
+                      Elimina
+                    </button>
                   </td>
                 </tr>
               </tbody>

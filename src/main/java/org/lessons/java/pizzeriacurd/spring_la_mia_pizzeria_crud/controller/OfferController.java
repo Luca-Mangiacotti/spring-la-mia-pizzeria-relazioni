@@ -2,6 +2,7 @@ package org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.controller;
 
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Offer;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.repository.OfferRepository;
+import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class OfferController {
 
     @Autowired
     private OfferRepository repository;
+
+    @Autowired
+    private PizzaRepository pizzaRepo;
 
     // AGGIUNTA DI UNA NUOVA OFFERTA (CREATE)
     @GetMapping("/create")
@@ -63,6 +67,17 @@ public class OfferController {
         repository.save(offerForm);
         return "redirect:/pizzas/" + offerForm.getPizza().getId();
 
+    }
+
+    // ELIMINAZIONE DI UN'OFFERTA (DELETE)
+    // andando a prendere l'elemento tramite id dal db ci serviamo della repository
+    // che utilizza il metodo
+    // deleteById(idProdotto)
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        repository.deleteById(id);
+        return "redirect:/pizzas";
     }
 
 }
