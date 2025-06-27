@@ -90,6 +90,34 @@
           </div>
         </div>
       </div>
+
+      <section>
+        <div class="row">
+          <div class="col-12">
+            <table class="table" th:if="*{offers.size() > 0}">
+              <thead>
+                <tr>
+                  <th>Titolo</th>
+                  <th>Data inizio</th>
+                  <th>Data fine</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  th:each="offer : *{offers}"
+                  th:object="${offer}"
+                  class="mb-2"
+                >
+                  <td>[[*{title}]]</td>
+                  <td>[[*{endDate}]]</td>
+                  <td>[[*{startDate}]]</td>
+                </tr>
+              </tbody>
+            </table>
+            <p th:unless="*{offers.size() > 0}">NO OFFERS :(</p>
+          </div>
+        </div>
+      </section>
     </main>
     <footer></footer>
     <!-- Blocco per JS -->
