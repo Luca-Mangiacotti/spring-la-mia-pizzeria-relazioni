@@ -1,6 +1,7 @@
 package org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,9 +9,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Offer;
 
 @Entity
 @Table(name = "pizzas")
@@ -37,6 +40,10 @@ public class Pizza {
     @NotNull
     @Column(name = "prezzo")
     private BigDecimal price;
+
+    // Aggiunta della relazione uno a molti da pizza a offerte
+    @OneToMany(mappedBy = "pizza")
+    private List<Offer> offers;
 
     // getter & setter
     public Integer getId() {
@@ -77,6 +84,14 @@ public class Pizza {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
 
     @Override
