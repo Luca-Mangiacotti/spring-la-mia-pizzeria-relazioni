@@ -22,7 +22,7 @@ public class Offer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
@@ -49,11 +49,11 @@ public class Offer {
     // getter + setter
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public LocalDate getStartDate() {
