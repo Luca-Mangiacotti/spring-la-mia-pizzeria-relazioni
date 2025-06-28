@@ -20,7 +20,7 @@
     <!-- Blocco per header -->
     <th:block th:fragment="header">
       <header
-        class="d-flex align-items-center justify-content-between px-5 rounded-bottom"
+        class="d-flex align-items-center justify-content-between px-5 rounded-bottom position-sticky"
       >
         <a th:href="@{/}"
           ><img alt="logo" th:src="@{/imgs/logo.png}" class="logo"
@@ -28,6 +28,11 @@
         <nav>
           <a th:href="@{/pizzas}" class="btn btn-warning font-weight-bold hov"
             >Elenco pizze</a
+          >
+          <a
+            th:href="@{/ingredients}"
+            class="btn btn-warning font-weight-bold hov"
+            >Ingredienti</a
           >
         </nav>
       </header>

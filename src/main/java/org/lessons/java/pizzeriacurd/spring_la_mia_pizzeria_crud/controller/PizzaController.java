@@ -1,5 +1,6 @@
 package org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.controller;
 
+import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.repository.IngredientRepository;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Ingredient;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Offer;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.model.Pizza;
 import java.util.List;
@@ -24,6 +26,9 @@ public class PizzaController {
 
     @Autowired
     private PizzaRepository repository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     // INDEX DEI PRODOTTI (INDEX)
 
@@ -65,6 +70,7 @@ public class PizzaController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("pizza", new Pizza());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
         return "pizzas/create";
     }
 
@@ -89,6 +95,7 @@ public class PizzaController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("pizza", repository.findById(id).get());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
         return "pizzas/edit";
     }
 
@@ -104,7 +111,7 @@ public class PizzaController {
         // nel caso non ci siano errori possiamo salvare il nostro prodotto tramite la
         // repository con il comando .save
         repository.save(pizzaForm);
-        return "redirect:/pizzas";
+        return "redirect:/pizzas/{id}";
 
     }
 
@@ -129,6 +136,17 @@ public class PizzaController {
         model.addAttribute("offer", offer);
 
         return "offers/create-edit";
+    }
+
+    // metodo per restituire la lista di ingredienti su una pizza
+
+    @GetMapping("/{id}/ingredient")
+    public String ingredients(@PathVariable("id") Integer id, Model model) {
+
+        List<Ingredient> ingredients = repository.findById(id).get().getIngredients();
+        model.addAttribute("ingredients", ingredients);
+
+        return "ingredients/create-edit";
 
     }
 
