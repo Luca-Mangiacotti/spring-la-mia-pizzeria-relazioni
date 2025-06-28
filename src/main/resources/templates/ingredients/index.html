@@ -12,12 +12,23 @@
     <main class="text-center overflow-x-hidden" th:object="${pizza}">
       <h1 class="mt-5 mb-5">Lista degli ingredienti</h1>
       <div class="container">
-        <div th:each=" ingredient : ${ingredients}" class="mb-2">
-          <div>[[${ingredient.name}]]</div>
-        </div>
         <a th:href="@{ingredients/create}" class="btn btn-warning mb-5"
           >Aggiungi un nuovo Ingrediente</a
         >
+        <u class="container-sm">
+          <li
+            th:each=" ingredient : ${ingredients}"
+            class="mb-2 d-flex align-items-center justify-content-center gap-3"
+          >
+            <div>[[${ingredient.name}]]</div>
+
+            <a
+              th:href="@{ingredients/edit/{id} (id=${ingredient.id})}"
+              class="btn btn-warning btn-sm"
+              >modifica</a
+            >
+          </li>
+        </ul>
       </div>
     </main>
     <footer></footer>
