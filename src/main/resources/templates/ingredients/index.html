@@ -9,7 +9,7 @@
   </head>
   <body>
     <header th:replace="~{ fragments/fragments :: header}"></header>
-    <main class="text-center overflow-x-hidden" th:object="${pizza}">
+    <main class="text-center overflow-x-hidden" th:object="${ingredient}">
       <h1 class="mt-5 mb-5">Lista degli ingredienti</h1>
       <div class="container">
         <a th:href="@{ingredients/create}" class="btn btn-warning mb-5"
@@ -27,6 +27,20 @@
               class="btn btn-warning btn-sm"
               >modifica</a
             >
+           <div>
+            <!-- Button trigger modal -->
+        <div>
+           <form
+                    th:action="@{/ingredients/delete/{id} (id =${ingredient.id})}"
+                    th:method="post"
+                    id="delete-form"
+                  >
+                    <button class="btn btn-danger" type="submit">
+                      Elimina
+                    </button>
+                  </form>         
+        </div>
+           </div>
           </li>
         </ul>
       </div>
