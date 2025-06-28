@@ -48,7 +48,7 @@ public class IngredientController {
         }
 
         ingredientRepository.save(ingredientForm);
-        return "redirect:/pizzas";
+        return "redirect:/ingredients";
 
     }
 

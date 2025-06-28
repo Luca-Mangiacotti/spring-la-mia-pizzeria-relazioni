@@ -23,8 +23,6 @@
             th:if="${ingredient.id != null}"
             th:field="*{id}"
           />
-          <!-- qui nascondiamo i dati della pizza a cui faccio riferimento per l'ingredientta -->
-          <input type="hidden" th:field="*{pizza.id}" id="current-pizza" />
           <div class="mb-3">
             <label class="form-label" for="name">Nome ingrediente: </label>
             <input
